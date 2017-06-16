@@ -43,6 +43,11 @@ def rakefile():
     f.write(newdata)
     f.close()
 
+def rspecfile():
+    # Modify .rspec so you don't require require 'spec_helper' at the top of each test
+    with open(".rspec", "a") as rspecfile:
+        rspecfile.write("--require spec_helper")
+
 def runtests():
     os.environ["CURRENT_DIR"] = CURRENT_DIR
     os.system('cd $CURRENT_DIR && rake spec')
@@ -55,6 +60,7 @@ def main():
         init()
         copytree(src, dest)
         rakefile()
+        rspecfile()
         runtests()
         cleanup()
     except OSError as detail:

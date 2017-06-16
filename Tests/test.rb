@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 # This is a sample test
 describe "World" do
   describe command('echo World') do
